@@ -1,31 +1,38 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
-import colors from './res/colors'
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import colors from './res/colors';
 
+import SignIn from './pages/SignIn';
+import Home from './pages/Home';
 
-import Home from './pages/Home'
-import Login from './pages/Login/index'
+const Stack = createStackNavigator();
 
-const Stack = createStackNavigator()
-
-const Routes = () => {
+const Routes: React.FC = () => {
     return (
-        <NavigationContainer>
-            <Stack.Navigator screenOptions={{
+        <Stack.Navigator
+            screenOptions={{
                 headerTintColor: 'white',
                 headerStyle: {
-                    backgroundColor: colors.primary
+                    backgroundColor: colors.primary,
                 },
                 cardStyle: {
-                    backgroundColor: colors.background
-                }
-            }}>
-                <Stack.Screen name="Login" component={Login} options={{ title: "Login" }} />
-                <Stack.Screen name="Home" component={Home} options={{ title: "Início" }} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
-}
+                    backgroundColor: colors.background,
+                },
+            }}
+        >
+            <Stack.Screen
+                name="SignIn"
+                component={SignIn}
+                options={{ title: 'Fazer login', headerShown: false }}
+            />
+            <Stack.Screen
+                name="Home"
+                component={Home}
+                options={{ title: 'Início' }}
+            />
+        </Stack.Navigator>
+    );
+};
 
-export default Routes
+export default Routes;
