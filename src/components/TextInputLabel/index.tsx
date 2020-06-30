@@ -7,7 +7,7 @@ interface Props {
     placeholder?: string
     label: string
     value?: string
-    onChange?: (text: string) => void
+    onChangeText?: (text: string) => void
     style?: StyleProp<ViewStyle>
     keyboardType?: KeyboardTypeOptions
     secureTextEntry?: boolean
@@ -31,7 +31,7 @@ const TextInputLabel: React.FC<Props> = (props) => {
                 placeholder={props.placeholder ? props.placeholder : props.label}
                 keyboardType={props.keyboardType}
                 value={props.value}
-                onChangeText={text => { if (props.onChange) props.onChange(text) }}
+                onChangeText={text => { if (props.onChangeText) props.onChangeText(text) }}
             />
         </View>
     )
