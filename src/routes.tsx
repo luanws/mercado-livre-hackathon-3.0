@@ -21,16 +21,8 @@ const Routes: React.FC = () => {
                 },
             }}
         >
-            <Stack.Screen
-                name="SignIn"
-                component={SignIn}
-                options={{ title: 'Fazer login', headerShown: false }}
-            />
-            <Stack.Screen
-                name="Home"
-                component={Home}
-                options={{ title: 'Início' }}
-            />
+            <Stack.Screen name="SignIn" component={SignIn} options={{ title: 'Fazer login', headerShown: false }} />
+            <Stack.Screen name="Home" component={Home} options={{ title: 'Início' }} />
         </Stack.Navigator>
     );
 };
