@@ -1,5 +1,6 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
+import {} from './src/firebase-config'
 
 import Routes from './src/routes'
 import colors from './src/res/colors'
