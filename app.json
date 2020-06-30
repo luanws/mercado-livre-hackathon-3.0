@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "mercado-livre-hackathon-3.0",
-    "slug": "mercado-livre-hackathon-3.0",
+    "slug": "mercado-livre-hackathon",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
