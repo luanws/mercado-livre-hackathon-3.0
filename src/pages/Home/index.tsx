@@ -1,14 +1,15 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StatusBar, ToolbarAndroid } from 'react-native'
 import * as firebase from 'firebase'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const Home = () => {
     const currentUser = firebase.auth().currentUser
 
     return (
-        <View>
+        <ScrollView>
             <Text>Logado como {currentUser?.email}</Text>
-        </View>
+        </ScrollView>
     )
 }
 
