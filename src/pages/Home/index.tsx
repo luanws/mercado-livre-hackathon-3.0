@@ -1,16 +1,23 @@
-import React from 'react'
-import { View, Text, StatusBar, ToolbarAndroid } from 'react-native'
-import * as firebase from 'firebase'
-import { ScrollView } from 'react-native-gesture-handler'
+import React from 'react';
+import { View, Text } from 'react-native';
 
-const Home = () => {
-    const currentUser = firebase.auth().currentUser
+import { useAuth } from '../../hooks/auth';
+import Input from '../../components/Input';
 
-    return (
-        <ScrollView>
-            <Text>Logado como {currentUser?.email}</Text>
-        </ScrollView>
-    )
-}
+// import { Container } from './styles';
 
-export default Home
+const Home: React.FC = () => {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <View />;
+  }
+
+  return (
+    <View>
+      <Text />
+    </View>
+  );
+};
+
+export default Home;
