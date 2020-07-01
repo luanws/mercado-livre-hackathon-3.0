@@ -1,18 +1,16 @@
 import React, { useRef, useCallback } from 'react'
-import { StatusBar, TextInput, Alert } from 'react-native'
+import { StatusBar, TextInput, Alert, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import * as firebase from 'firebase'
 
 import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core'
 
-import { Container, Branding, Logo, Title } from './styles'
-
+import styles, { Container, Branding, Logo, Title } from './styles'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 
 import logo from '../../assets/logo.png'
-import { ScrollView } from 'react-native-gesture-handler'
 
 interface SignInFormData {
     email: string
@@ -26,12 +24,13 @@ const SignIn: React.FC = () => {
     const navigation = useNavigation()
 
     const navigateToHome = () => navigation.reset({ routes: [{ name: 'Home' }] })
+    const navigateToSignUp = () => navigation.reset({ routes: [{ name: 'SignUp' }] })
 
-    firebase.auth().onAuthStateChanged(() => {
-        if (firebase.auth().currentUser) navigateToHome()
-    })
+    // firebase.auth().onAuthStateChanged(() => {
+    //     if (firebase.auth().currentUser) navigateToHome()
+    // })
 
-    function login(email: string, password: string) {
+    function signIn(email: string, password: string) {
         firebase.auth().signInWithEmailAndPassword(email, password).then((response) => {
             navigateToHome()
         }).catch((error) => {
@@ -44,7 +43,7 @@ const SignIn: React.FC = () => {
 
     const handleSignIn = useCallback(async (data: SignInFormData) => {
         formRef.current?.setErrors({})
-        login(data.email, data.password)
+        signIn(data.email, data.password)
     }, [])
 
     return (
@@ -90,6 +89,9 @@ const SignIn: React.FC = () => {
                         formRef.current?.submitForm()
                     }}>Entrar</Button>
                 </Form>
+                <TouchableOpacity onPress={() => navigateToSignUp()}>
+                    <Text style={styles.textSignUp}>Não possui uma conta? Clique aqui e cadastre-se!</Text>
+                </TouchableOpacity>
             </Container>
         </ScrollView>
     )
