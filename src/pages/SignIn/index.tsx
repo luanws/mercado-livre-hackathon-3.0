@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useEffect } from 'react';
 import {
   StatusBar,
   TextInput,
@@ -7,11 +7,10 @@ import {
   Platform,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import * as firebase from 'firebase';
 
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
-// import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth';
 
 import { Container, Branding, Logo, Title } from './styles';
 
@@ -29,26 +28,19 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const navigation = useNavigation();
+  const { signIn } = useAuth();
 
-  // const { signIn } = useAuth();
+  const handleSignIn = useCallback(
+    async (data: SignInFormData) => {
+      formRef.current?.setErrors({});
 
-  const handleSignIn = useCallback(async (data: SignInFormData) => {
-    formRef.current?.setErrors({});
-
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(data.email, data.password)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        Alert.alert(
-          'Erro na autenticação',
-          'Ocorreu um erro ao fazer login, cheque as credenciais',
-        );
+      await signIn({
+        email: data.email,
+        password: data.password,
       });
-  }, []);
+    },
+    [signIn],
+  );
 
   return (
     <>
