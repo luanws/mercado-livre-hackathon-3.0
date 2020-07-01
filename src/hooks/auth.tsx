@@ -5,8 +5,9 @@ import React, {
   useContext,
   useEffect,
 } from 'react'
-import { Alert } from 'react-native'
 import * as firebase from 'firebase'
+
+import { alertDialog } from '../utils/alert'
 
 interface SignInCredentials {
   email: string
@@ -45,6 +46,11 @@ const AuthProvider: React.FC = ({ children }) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((response) => {
         setUser(response.user)
+      }).catch(error => {
+        alertDialog(
+          'Erro na autenticação',
+          'Ocorreu um erro ao tentar fazer login. Verifique as credenciais e tente novamente.',
+        )
       })
   }, [])
 
@@ -55,9 +61,9 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signUp = useCallback(async ({ email, password, passwordConfirm }: SignUpCredentials) => {
     if (password !== passwordConfirm) {
-      Alert.alert(
+      alertDialog(
         'Erro ao tentar realizar cadastro',
-        'As senhas não coincidem'
+        'As senhas não coincidem.'
       )
     } else {
       firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -65,7 +71,7 @@ const AuthProvider: React.FC = ({ children }) => {
         .catch(error => {
           const code = error.code
           const message = error.message
-          Alert.alert(
+          alertDialog(
             'Erro ao tentar realizar o cadastro',
             message,
           )
