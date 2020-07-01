@@ -4,49 +4,34 @@ import * as firebase from 'firebase'
 
 import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core'
+import { useNavigation } from '@react-navigation/native'
 
 import styles, { Container, Branding, Logo, Title } from './styles'
 import Input from '../../components/Input'
 import Button from '../../components/Button'
 
+import { useAuth } from '../../hooks/auth'
+
 import colors from '../../res/colors'
 import logo from '../../assets/logo.png'
-import { useNavigation } from '@react-navigation/native'
 
-interface SignInFormData {
+interface SignUpFormData {
   email: string
   password: string
   passwordConfirm: string
 }
 
 const SignUp = () => {
+  const { signUp } = useAuth()
   const formRef = useRef<FormHandles>(null)
 
   const navigation = useNavigation()
 
-  const navigateToHome = () => navigation.reset({ routes: [{ name: 'Home' }] })
   const navigateToSignIn = () => navigation.reset({ routes: [{ name: 'SignIn' }] })
 
-  function signUp(email: string, password: string, passwordConfirm: string) {
-    if (password !== passwordConfirm) {
-      Alert.alert(
-        'Erro ao tentar realizar cadastro',
-        'As senhas não coincidem'
-      )
-      return
-    }
-    firebase.auth().createUserWithEmailAndPassword(email, password).then(() => navigateToHome())
-      .catch(error => {
-        Alert.alert(
-          'Erro na autenticação',
-          'Ocorreu um erro ao fazer login, cheque as credenciais',
-        )
-      })
-  }
-
-  const handleSignUp = useCallback(async (data: SignInFormData) => {
+  const handleSignUp = useCallback(async (data: SignUpFormData) => {
     formRef.current?.setErrors({})
-    signUp(data.email, data.password, data.passwordConfirm)
+    signUp(data)
   }, [])
 
   return (

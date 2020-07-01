@@ -1,18 +1,12 @@
-import React, { useRef, useCallback, useEffect } from 'react'
-import {
-  StatusBar,
-  TextInput,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native'
+import React, { useRef, useCallback } from 'react'
+import { StatusBar, TextInput, TouchableOpacity, Text, Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core'
 import { useAuth } from '../../hooks/auth'
 
-import { Container, Branding, Logo, Title } from './styles'
+import styles, { Container, Branding, Logo, Title } from './styles'
 
 import Input from '../../components/Input'
 import Button from '../../components/Button'
@@ -27,6 +21,9 @@ interface SignInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
   const passwordInputRef = useRef<TextInput>(null)
+
+  const navigation = useNavigation()
+  const navigateToSignUp = () => navigation.reset({ routes: [{ name: 'SignUp' }] })
 
   const { signIn } = useAuth()
 
@@ -81,14 +78,13 @@ const SignIn: React.FC = () => {
             }}
           />
 
-          <Button
-            onPress={() => {
-              formRef.current?.submitForm()
-            }}
-          >
-            Entrar
-          </Button>
+          <Button onPress={() => {
+            formRef.current?.submitForm()
+          }}>Entrar</Button>
         </Form>
+        <TouchableOpacity onPress={() => navigateToSignUp()}>
+          <Text style={styles.textSignUp}>Não possui uma conta? Clique aqui e cadastre-se!</Text>
+        </TouchableOpacity>
       </Container>
     </>
   )

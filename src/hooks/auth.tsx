@@ -13,10 +13,18 @@ interface SignInCredentials {
   password: string
 }
 
+interface SignUpCredentials {
+  email: string
+  password: string
+  passwordConfirm: string
+}
+
 interface AuthContextData {
   user: firebase.User | null
   authenticated: boolean
   signIn(credentials: SignInCredentials): Promise<void>
+  signUp(credentials: SignUpCredentials): Promise<void>
+  signOut(): Promise<void>
   loading: boolean
 }
 
@@ -33,16 +41,10 @@ const AuthProvider: React.FC = ({ children }) => {
     })
   }, [user])
 
-  const signIn = useCallback(async ({ email, password }) => {
+  const signIn = useCallback(async ({ email, password }: SignInCredentials) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((response) => {
         setUser(response.user)
-      })
-      .catch((error) => {
-        Alert.alert(
-          'Erro na autenticação',
-          'Ocorreu um erro ao fazer login, cheque as credenciais',
-        )
       })
   }, [])
 
@@ -50,9 +52,30 @@ const AuthProvider: React.FC = ({ children }) => {
     firebase.auth().signOut()
   }, [])
 
+
+  const signUp = useCallback(async ({ email, password, passwordConfirm }: SignUpCredentials) => {
+    if (password !== passwordConfirm) {
+      Alert.alert(
+        'Erro ao tentar realizar cadastro',
+        'As senhas não coincidem'
+      )
+    } else {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(response => setUser(response.user))
+        .catch(error => {
+          const code = error.code
+          const message = error.message
+          Alert.alert(
+            'Erro ao tentar realizar o cadastro',
+            message,
+          )
+        })
+    }
+  }, [])
+
   return (
     <AuthContext.Provider
-      value={{ user, authenticated: user !== null, signIn, loading }}
+      value={{ user, authenticated: user !== null, signIn, signUp, signOut, loading }}
     >
       {children}
     </AuthContext.Provider>
