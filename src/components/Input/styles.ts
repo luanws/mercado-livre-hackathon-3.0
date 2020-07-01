@@ -35,6 +35,7 @@ export const TextInput = styled.TextInput`
   color: #463973;
   font-size: 16px;
   font-family: 'Inter_400Regular';
+  outline-width: 0;
 `;
 
 export const Icon = styled(FeatherIcon)`
