@@ -78,6 +78,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = (
       />
 
       <TextInput
+        style={{ outlineWidth: 0 }}
         ref={inputElementRef}
         keyboardAppearance="dark"
         placeholderTextColor="#666360"
