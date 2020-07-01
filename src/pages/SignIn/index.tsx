@@ -26,9 +26,9 @@ const SignIn: React.FC = () => {
     const navigateToHome = () => navigation.reset({ routes: [{ name: 'Home' }] })
     const navigateToSignUp = () => navigation.reset({ routes: [{ name: 'SignUp' }] })
 
-    // firebase.auth().onAuthStateChanged(() => {
-    //     if (firebase.auth().currentUser) navigateToHome()
-    // })
+    firebase.auth().onAuthStateChanged(() => {
+        if (firebase.auth().currentUser) navigateToHome()
+    })
 
     function signIn(email: string, password: string) {
         firebase.auth().signInWithEmailAndPassword(email, password).then((response) => {
