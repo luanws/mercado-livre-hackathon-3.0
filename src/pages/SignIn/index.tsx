@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react'
-import { StatusBar, TextInput, Alert, } from 'react-native'
+import { StatusBar, TextInput, Alert } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import * as firebase from 'firebase'
 
@@ -26,9 +26,10 @@ const SignIn: React.FC = () => {
     const navigation = useNavigation()
 
     const navigateToHome = () => navigation.reset({ routes: [{ name: 'Home' }] })
-    
-    console.log(firebase.auth().currentUser?.uid)
-    if (firebase.auth().currentUser?.uid) navigateToHome()
+
+    firebase.auth().onAuthStateChanged(() => {
+        if (firebase.auth().currentUser) navigateToHome()
+    })
 
     function login(email: string, password: string) {
         firebase.auth().signInWithEmailAndPassword(email, password).then((response) => {
