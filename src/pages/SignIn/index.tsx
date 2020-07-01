@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react'
-import { StatusBar, TextInput, TouchableOpacity, Text, Alert } from 'react-native'
+import { StatusBar, TextInput, TouchableOpacity, Text, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { Form } from '@unform/mobile'
@@ -40,7 +40,7 @@ const SignIn: React.FC = () => {
   )
 
   return (
-    <>
+    <ScrollView>
       <StatusBar
         backgroundColor="transparent"
         translucent
@@ -86,7 +86,7 @@ const SignIn: React.FC = () => {
           <Text style={styles.textSignUp}>Não possui uma conta? Clique aqui e cadastre-se!</Text>
         </TouchableOpacity>
       </Container>
-    </>
+    </ScrollView>
   )
 }
 
