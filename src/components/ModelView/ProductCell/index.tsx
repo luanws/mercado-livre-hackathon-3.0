@@ -27,18 +27,14 @@ const ProductView: React.FC<Props> = (props) => {
                 style={styles.image}
                 source={{ uri: product.imageUrl }}
             />
-            <View style={styles.containerContainerText}>
-                <View style={styles.column}>
-                    <Text style={styles.name}>{product.name}</Text>
-                    <Text>{product.getPriceMoneyFormat()}</Text>
-                </View>
-                <View style={styles.column}>
-                    <Text>{product.hall}</Text>
-                    <Text>{product.category}</Text>
-                </View>
-                <View style={styles.column}>
-                    <FontAwesome name="cart-plus" size={32} color={colors.successDark} />
-                </View>
+            <View style={styles.column}>
+                <Text style={styles.name}>{product.name}</Text>
+                <Text>{product.getPriceMoneyFormat()}</Text>
+            </View>
+            <View style={styles.column}>
+                <TouchableOpacity style={styles.addToCart}>
+                    <FontAwesome name="cart-plus" size={32} color="#0c0" />
+                </TouchableOpacity>
             </View>
         </TouchableOpacity>
     )

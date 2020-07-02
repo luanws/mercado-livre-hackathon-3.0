@@ -10,12 +10,7 @@ const styles = StyleSheet.create({
         padding: 16,
         backgroundColor: 'white',
         borderRadius: 5,
-    },
-    containerContainerText: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flex: 1
+        justifyContent: 'space-between',
     },
     column: {
         marginHorizontal: 8
@@ -29,6 +24,9 @@ const styles = StyleSheet.create({
     name: {
         fontWeight: 'bold',
     },
+    addToCart: {
+        padding: 8,
+    }
 })
 
 export default styles
