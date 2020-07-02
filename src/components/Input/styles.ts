@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import { Feather as FeatherIcon } from '@expo/vector-icons';
+import { Platform } from 'react-native';
 
 interface ContainerProps {
   isFocused: boolean;
@@ -35,6 +36,7 @@ export const TextInput = styled.TextInput`
   color: #463973;
   font-size: 16px;
   font-family: 'Inter_400Regular';
+  ${Platform.OS === 'web' ? 'outline-width: 0;' : ''}
 `;
 
 export const Icon = styled(FeatherIcon)`
