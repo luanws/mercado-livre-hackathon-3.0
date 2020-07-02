@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { View, Text, Image } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 
 import { useAuth } from '../../hooks/auth'
 import { useNavigation } from '@react-navigation/native'
@@ -30,12 +30,12 @@ const Home: React.FC = () => {
   }, [])
 
   return (
-    <View>
+    <ScrollView>
       <Text>{user?.email}</Text>
       <View>
         {products.map(product => <ProductView key={product.key} product={product} />)}
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
