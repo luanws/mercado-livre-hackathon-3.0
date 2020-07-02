@@ -1,4 +1,5 @@
 interface ProductInterface {
+    companyKey: string
     imageUrl: string
     price: number
     name: string
@@ -9,6 +10,7 @@ interface ProductInterface {
 }
 
 class Product {
+    companyKey: string
     imageUrl: string
     price: number
     name: string
@@ -18,6 +20,7 @@ class Product {
     brand: string
 
     constructor(product: ProductInterface) {
+        this.companyKey = product.companyKey
         this.imageUrl = product.imageUrl
         this.price = product.price
         this.name = product.name
