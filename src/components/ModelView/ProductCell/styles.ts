@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native'
+import colors from '../../../res/colors'
 
 const styles = StyleSheet.create({
     container: {
@@ -16,8 +17,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         flex: 1
     },
-    containerText: {
-        marginHorizontal: 16
+    column: {
+        marginHorizontal: 8
     },
     image: {
         width: 64,
