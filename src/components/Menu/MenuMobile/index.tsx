@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
-import { TouchableOpacity, Image, Platform } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import Menu, { MenuItem } from 'react-native-material-menu'
 import { Entypo } from '@expo/vector-icons'
 import { useAuth } from '../../../hooks/auth'
 
-import { alertDialog } from '../../../utils/alert'
 import styles from './styles'
 
 export default () => {
