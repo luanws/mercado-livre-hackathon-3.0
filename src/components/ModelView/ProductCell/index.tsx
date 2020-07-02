@@ -6,7 +6,6 @@ import * as firebase from 'firebase'
 import { useAuth } from '../../../hooks/auth'
 
 import Product from '../../../models/product'
-import colors from '../../../res/colors'
 import styles from './styles'
 
 interface Props {
