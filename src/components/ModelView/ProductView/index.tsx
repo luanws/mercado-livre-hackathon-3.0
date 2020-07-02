@@ -9,14 +9,7 @@ interface Props {
 }
 
 const ProductView: React.FC<Props> = (props) => {
-    const product = props.product
-
-    function moneyFormat(money: number): string {
-        return 'R$' + money
-            .toFixed(2)
-            .toString()
-            .replace('.', ',')
-    }
+    const product = new Product(props.product)
 
     return (
         <View style={styles.container}>
@@ -27,7 +20,7 @@ const ProductView: React.FC<Props> = (props) => {
             <View style={styles.containerContainerText}>
                 <View style={styles.containerText}>
                     <Text style={styles.name}>{product.name}</Text>
-                    <Text>{moneyFormat(product.price)}</Text>
+                    <Text>{product.getPriceMoneyFormat()}</Text>
                 </View>
                 <View style={styles.containerText}>
                     <Text>{product.hall}</Text>

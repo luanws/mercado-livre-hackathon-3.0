@@ -29,6 +29,13 @@ class Product {
         this.hall = product.hall
         this.brand = product.brand
     }
+
+    getPriceMoneyFormat(): string {
+        return 'R$' + this.price
+            .toFixed(2)
+            .toString()
+            .replace('.', ',')
+    }
 }
 
 export default Product
