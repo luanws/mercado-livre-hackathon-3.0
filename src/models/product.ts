@@ -1,5 +1,5 @@
 interface ProductInterface {
-    key: string
+    key?: string
     companyKey: string
     imageUrl: string
     price: number
@@ -11,7 +11,7 @@ interface ProductInterface {
 }
 
 class Product {
-    key: string
+    key?: string
     companyKey: string
     imageUrl: string
     price: number

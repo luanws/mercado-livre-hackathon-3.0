@@ -1,5 +1,5 @@
 interface CompanyInterface {
-    key: string
+    key?: string
     name: string
     corporateName: string
     cnpj: string
@@ -9,7 +9,7 @@ interface CompanyInterface {
 }
 
 class Company {
-    key: string
+    key?: string
     name: string
     corporateName: string
     cnpj: string
