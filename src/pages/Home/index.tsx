@@ -18,7 +18,8 @@ const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    db.ref('products').on('value', (snapshot: firebase.database.DataSnapshot) => {
+    const listener = db.ref('products')
+    listener.on('value', (snapshot: firebase.database.DataSnapshot) => {
       const products: Product[] = []
       snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
         const product: Product = snapshot.val()
@@ -26,6 +27,8 @@ const Home: React.FC = () => {
       })
       setProducts(products)
     })
+
+    return () => listener.off()
   }, [])
 
   return (
