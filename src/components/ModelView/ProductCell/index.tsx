@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
+import * as firebase from 'firebase'
+
+import { useAuth } from '../../../hooks/auth'
 
 import Product from '../../../models/product'
 import colors from '../../../res/colors'
@@ -14,8 +17,20 @@ interface Props {
 const ProductView: React.FC<Props> = (props) => {
     const product = new Product(props.product)
 
+    const { user } = useAuth()
+
+    const db = firebase.database()
+
     function onPress() {
         if (props.onPress) props.onPress(product)
+    }
+
+    function addToCart() {
+        const uid = user?.uid
+        const key = product.key
+        if (!uid || !key) return
+
+        db.ref('carts').child(uid).push(key)
     }
 
     return (
@@ -32,7 +47,10 @@ const ProductView: React.FC<Props> = (props) => {
                 <Text>{product.getPriceMoneyFormat()}</Text>
             </View>
             <View style={styles.column}>
-                <TouchableOpacity style={styles.addToCart}>
+                <TouchableOpacity
+                    onPress={() => addToCart()}
+                    style={styles.addToCart}
+                >
                     <FontAwesome name="cart-plus" size={32} color="#0c0" />
                 </TouchableOpacity>
             </View>

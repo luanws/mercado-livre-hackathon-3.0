@@ -34,7 +34,6 @@ const Home: React.FC = () => {
 
   return (
     <ScrollView>
-      <Text>{user?.email}</Text>
       <View>
         {products.map((product, index) =>
           <ProductView
