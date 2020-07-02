@@ -1,13 +1,16 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useRef } from 'react'
+import { View, Text, Image } from 'react-native'
 
-import { useAuth } from '../../hooks/auth';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../../hooks/auth'
+import Input from '../../components/Input'
+import Button from '../../components/Button'
+import { useNavigation } from '@react-navigation/native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+
+import styles from './styles'
 
 const Home: React.FC = () => {
-  const { user, signOut } = useAuth();
+  const { user, signOut } = useAuth()
 
   const navigation = useNavigation()
 
@@ -20,7 +23,7 @@ const Home: React.FC = () => {
         signOut()
       }}>Sair</Button>
     </View>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
