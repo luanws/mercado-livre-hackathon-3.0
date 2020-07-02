@@ -1,24 +1,16 @@
-import React, { useRef } from 'react'
-import { TouchableOpacity, Image } from 'react-native'
-import Menu, { MenuItem } from 'react-native-material-menu'
+import React from 'react'
 
-import styles from './styles'
+import { Platform } from 'react-native'
+import MenuMobile from './MenuMobile'
 
 export default () => {
-    let menuRef = useRef<Menu>(null)
+    function getMenu() {
+        switch (Platform.OS) {
+            case 'android': return <MenuMobile />
+            case 'ios': return <MenuMobile />
+            default: return null
+        }
+    }
 
-    return (
-        <Menu
-            ref={menuRef}
-            button={
-                <TouchableOpacity onPress={() => menuRef.current?.show()}>
-                    <Image source={require('../../assets/img/logo.png')} resizeMode='contain' />
-                </TouchableOpacity>
-            }
-        >
-            <MenuItem onPress={() => { }} textStyle={styles.menuItem}>Rate App</MenuItem>
-            <MenuItem onPress={() => { }} textStyle={styles.menuItem}>Invite Friends</MenuItem>
-            <MenuItem onPress={() => { }} textStyle={styles.menuItem}>Logout</MenuItem>
-        </Menu>
-    )
+    return getMenu()
 }
