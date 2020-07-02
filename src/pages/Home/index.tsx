@@ -22,7 +22,6 @@ const Home: React.FC = () => {
       const products: Product[] = []
       snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
         const product: Product = snapshot.val()
-        product.key = snapshot.key!!
         products.push(product)
       })
       setProducts(products)
@@ -33,7 +32,7 @@ const Home: React.FC = () => {
     <ScrollView>
       <Text>{user?.email}</Text>
       <View>
-        {products.map(product => <ProductView key={product.key} product={product} />)}
+        {products.map((product, index) => <ProductView key={index} product={product} />)}
       </View>
     </ScrollView>
   )
