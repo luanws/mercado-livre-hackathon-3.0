@@ -1,5 +1,4 @@
 interface CompanyInterface {
-    key?: string
     name: string
     corporateName: string
     cnpj: string
@@ -9,7 +8,6 @@ interface CompanyInterface {
 }
 
 class Company {
-    key?: string
     name: string
     corporateName: string
     cnpj: string
@@ -18,7 +16,6 @@ class Company {
     uf: string
 
     constructor(company: CompanyInterface) {
-        this.key = company.key
         this.name = company.name
         this.corporateName = company.corporateName
         this.cnpj = company.cnpj
