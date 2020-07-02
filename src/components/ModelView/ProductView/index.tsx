@@ -15,7 +15,7 @@ const ProductView: React.FC<Props> = (props) => {
         <View style={styles.container}>
             <Image
                 style={styles.image}
-                source={{ uri: 'https://static.wixstatic.com/media/24e98d_efbc30ba91c94283a203d13e782c5288~mv2.png/v1/fill/w_490,h_368,al_c,q_85,usm_0.66_1.00_0.01/bannana.webp' }}
+                source={{ uri: product.imageUrl }}
             />
             <View style={styles.containerContainerText}>
                 <View style={styles.containerText}>
