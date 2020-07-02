@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/auth'
 import { useNavigation } from '@react-navigation/native'
 import * as firebase from 'firebase'
 
-import ProductView from '../../components/ModelView/ProductCell'
+import ProductView from '../../components/ModelCell/ProductCell'
 
 import Product from '../../models/product'
 
