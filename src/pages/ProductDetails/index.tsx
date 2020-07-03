@@ -76,6 +76,8 @@ const ProductDetails = () => {
                     <AntDesign name="tag" size={24} color="orange" />
                     <Text style={styles.textItemIcon}>Marca: {product.brand}</Text>
                 </View>
+                <Text style={styles.textItemIcon}>Quantidade: {product.quantity}</Text>
+                <Text style={styles.textItemIcon}>Descrição: {product.description}</Text>
             </View>
         </ScrollView>
     )
