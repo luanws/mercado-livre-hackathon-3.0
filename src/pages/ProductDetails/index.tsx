@@ -2,16 +2,36 @@ import React from 'react'
 import { View, Text, ScrollView, Image } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { Octicons, MaterialIcons, AntDesign, FontAwesome5 } from '@expo/vector-icons'
+import Toast from '../../utils/toast'
+import * as firebase from 'firebase'
 
 import Product from '../../models/product'
 import colors from '../../res/colors'
 import styles from './styles'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useAuth } from '../../hooks/auth'
 
+const db = firebase.database()
 
 const ProductDetails = () => {
     const route = useRoute()
     const product = new Product(route.params as Product)
+
+    const { user } = useAuth()
+
+    function addToCart() {
+        const uid = user?.uid
+        const key = product.key
+        if (!uid || !key) return
+
+        db.ref('carts').child(uid).push(key)
+            .then(() => {
+                Toast.showSuccess('Produto adicionado ao carrinho')
+            })
+            .catch(error => {
+                Toast.showError('Ocorreu um erro ao tentar adicionar seu produto ao carrinho. Tente novamente.')
+            })
+    }
 
     const Available = () => (
         <>
@@ -30,7 +50,10 @@ const ProductDetails = () => {
 
     return (
         <ScrollView>
-            <TouchableOpacity style={styles.addToCart}>
+            <TouchableOpacity
+                onPress={addToCart}
+                style={styles.addToCart}
+            >
                 <FontAwesome5 name="cart-plus" size={24} color="green" />
             </TouchableOpacity>
             <Image source={{ uri: product.imageUrl }} style={styles.image} />

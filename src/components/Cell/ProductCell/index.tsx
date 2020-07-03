@@ -1,8 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import * as firebase from 'firebase'
-
-import { useAuth } from '../../../hooks/auth'
 
 import Product from '../../../models/product'
 import styles from './styles'
@@ -19,22 +16,9 @@ const ProductCell: React.FC<Props> = (props) => {
     const navigation = useNavigation()
     const navigateToProductDetails = () => navigation.navigate("ProductDetails", product)
 
-    const { user } = useAuth()
-
-    const db = firebase.database()
-
     function onPress() {
-        console.log(props.onPress)
         if (props.onPress) props.onPress(product)
         else navigateToProductDetails()
-    }
-
-    function addToCart() {
-        const uid = user?.uid
-        const key = product.key
-        if (!uid || !key) return
-
-        db.ref('carts').child(uid).push(key)
     }
 
     return (
