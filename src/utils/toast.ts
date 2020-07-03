@@ -1,7 +1,7 @@
 import Toast from 'react-native-tiny-toast'
 import { EdgeInsetsPropType } from 'react-native'
 
-const showSuccess = (msg: string) => Toast.showSuccess(msg, {
+const showSuccess = (message: string) => Toast.showSuccess(message, {
     position: Toast.position.CENTER,
     containerStyle: {
         backgroundColor: '#32CD32',
@@ -18,7 +18,7 @@ const showSuccess = (msg: string) => Toast.showSuccess(msg, {
     animation: true,
 })
 
-const showError = (msg: string) => Toast.show(msg, {
+const showError = (message: string) => Toast.show(message, {
     position: Toast.position.CENTER,
     containerStyle: {
         backgroundColor: '#f00',
