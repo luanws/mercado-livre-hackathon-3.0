@@ -38,8 +38,22 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#070'
     },
+    containerDescription: {
+        backgroundColor: '#eee',
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 5,
+        marginTop: 16
+    },
     textItemIcon: {
         marginLeft: 8
+    },
+    textDescription: {
+        textAlign: 'justify',
+        color: '#444'
+    },
+    bold: {
+        fontWeight: 'bold'
     }
 })
 
