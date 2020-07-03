@@ -8,6 +8,8 @@ interface ProductInterface {
     category: string
     hall: string
     brand: string
+    quantity: string
+    description: string
 }
 
 class Product {
@@ -20,6 +22,8 @@ class Product {
     category: string
     hall: string
     brand: string
+    quantity: string
+    description: string
 
     constructor(product: ProductInterface) {
         this.key = product.key
@@ -31,6 +35,8 @@ class Product {
         this.category = product.category
         this.hall = product.hall
         this.brand = product.brand
+        this.quantity = product.quantity
+        this.description = product.description
     }
 
     getPriceMoneyFormat(): string {
