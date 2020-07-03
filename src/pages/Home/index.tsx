@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/auth'
 import { useNavigation } from '@react-navigation/native'
 import * as firebase from 'firebase'
 
-import ListProducts from '../../components/List/ListProducts'
+import ListProductsByHall from '../../components/List/ListProductsByHall'
 import Product from '../../models/product'
 
 import styles from './styles'
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
 
   return (
     <ScrollView>
-      <ListProducts products={products} />
+      <ListProductsByHall products={products} />
     </ScrollView>
   )
 }

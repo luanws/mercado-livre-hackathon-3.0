@@ -3,9 +3,7 @@ import { View, Text, ScrollView } from 'react-native'
 import * as firebase from 'firebase'
 
 import { useAuth } from '../../hooks/auth'
-
-import ListProducts from '../../components/List/ListProducts'
-
+import ListProductsByHall from '../../components/List/ListProductsByHall'
 import Product from '../../models/product'
 
 const db = firebase.database()
@@ -47,9 +45,9 @@ const ProductsCart = () => {
     return () => cartsRef.off()
   }, [])
   return (
-    <ScrollView>
-      <ListProducts products={productsCart} />
-    </ScrollView>
+    <View>
+      <ListProductsByHall products={productsCart} />
+    </View>
   )
 }
 
