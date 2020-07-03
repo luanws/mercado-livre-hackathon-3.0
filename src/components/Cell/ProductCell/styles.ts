@@ -3,14 +3,14 @@ import colors from '../../../res/colors'
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
         alignItems: 'center',
         margin: 8,
-        marginHorizontal: 16,
-        padding: 16,
+        marginHorizontal: 8,
+        padding: 8,
         backgroundColor: 'white',
         borderRadius: 5,
         justifyContent: 'space-between',
+        width: 140,
     },
     column: {
         marginHorizontal: 8

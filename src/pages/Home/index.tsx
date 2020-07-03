@@ -5,8 +5,7 @@ import { useAuth } from '../../hooks/auth'
 import { useNavigation } from '@react-navigation/native'
 import * as firebase from 'firebase'
 
-import ProductCell from '../../components/ModelCell/ProductCell'
-
+import ListProducts from '../../components/List/ListProducts'
 import Product from '../../models/product'
 
 import styles from './styles'
@@ -19,10 +18,10 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const listener = db.ref('products')
-    
+
     listener.on('value', (snapshot: firebase.database.DataSnapshot) => {
       const products: Product[] = []
-      
+
       snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
         const product: Product = snapshot.val()
         products.push(product)
@@ -37,15 +36,7 @@ const Home: React.FC = () => {
 
   return (
     <ScrollView>
-      <View>
-        {products.map((product, index) =>
-          <ProductCell
-            onPress={(product => console.log(product))}
-            key={index}
-            product={product}
-          />
-        )}
-      </View>
+      <ListProducts products={products} />
     </ScrollView>
   )
 }
