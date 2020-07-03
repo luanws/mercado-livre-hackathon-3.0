@@ -27,7 +27,7 @@ const AppRoutes: React.FC = () => (
     }}
   >
     <App.Screen name="Home" component={Home} options={{ title: 'Início' }} />
-    <App.Screen name="Cart" component={Cart} options={{ title: 'Carrinho de compras' }} />
+    <App.Screen name="Cart" component={Cart} options={{ title: 'Carrinho' }} />
   </App.Navigator >
 )
 
