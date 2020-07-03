@@ -24,7 +24,8 @@ const ListProductHall: React.FC<Props> = (props) => {
       <Text
         style={{
           marginHorizontal: 16,
-          fontSize: 20,
+          fontSize: 18,
+          fontWeight: 'bold'
         }}
       >{props.title}</Text>
       <ListCardsHorizontal>

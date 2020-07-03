@@ -41,18 +41,18 @@ const ProductCell: React.FC<Props> = (props) => {
                 style={styles.image}
                 source={{ uri: product.imageUrl }}
             />
-            <View style={styles.column}>
+            <View style={styles.containerInfo}>
                 <Text style={styles.name}>{product.name}</Text>
                 <Text>{product.getPriceMoneyFormat()}</Text>
             </View>
-            <View style={styles.column}>
+            {/* <View style={styles.subContainer}>
                 <TouchableOpacity
                     onPress={() => addToCart()}
                     style={styles.addToCart}
                 >
                     <FontAwesome name="cart-plus" size={32} color="#0c0" />
                 </TouchableOpacity>
-            </View>
+            </View> */}
         </TouchableOpacity>
     )
 }

@@ -19,7 +19,7 @@ interface ProductHall {
 }
 
 const ListProductsByHall: React.FC<Props> = (props) => {
-    const products = props.products.map(p => new Product(p))
+    const products = props.products
 
     const productCategoryArray: ProductHall[] = []
     const halls = Array.from(new Set(products.map(p => p.hall)))
@@ -32,8 +32,6 @@ const ListProductsByHall: React.FC<Props> = (props) => {
         <View style={styles.container}>
             {halls.map((hall, index) => {
                 const hallProducts = products.filter(p => p.hall === hall)
-                console.log('####################')
-                console.log(hall, hallProducts)
                 return <ListProductHall key={index} title={hall} products={hallProducts} />
             })}
         </View>
