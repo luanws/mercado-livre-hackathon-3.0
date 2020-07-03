@@ -32,16 +32,8 @@ const ProductCell: React.FC<Props> = (props) => {
             />
             <View style={styles.containerInfo}>
                 <Text style={styles.name}>{product.name}</Text>
-                <Text>{product.getPriceMoneyFormat()}</Text>
+                <Text style={styles.info}>{product.quantity} - {product.getPriceMoneyFormat()}</Text>
             </View>
-            {/* <View style={styles.subContainer}>
-                <TouchableOpacity
-                    onPress={() => addToCart()}
-                    style={styles.addToCart}
-                >
-                    <FontAwesome name="cart-plus" size={32} color="#0c0" />
-                </TouchableOpacity>
-            </View> */}
         </TouchableOpacity>
     )
 }

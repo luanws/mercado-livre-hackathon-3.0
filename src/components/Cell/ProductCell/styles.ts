@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     name: {
         fontWeight: 'bold',
     },
+    info: {
+        textAlign: 'center'
+    },
     addToCart: {
         padding: 8,
     }
