@@ -2,7 +2,6 @@ import React from 'react'
 import { View, ScrollView } from 'react-native'
 
 import ListProductHall from './ListProductHall'
-import ProductCell from '../../Cell/ProductCell'
 
 import Product from '../../../models/product'
 

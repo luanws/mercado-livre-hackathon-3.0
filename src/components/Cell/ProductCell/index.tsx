@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import { FontAwesome } from '@expo/vector-icons'
 import * as firebase from 'firebase'
 
 import { useAuth } from '../../../hooks/auth'
 
 import Product from '../../../models/product'
 import styles from './styles'
+import { useNavigation } from '@react-navigation/native'
 
 interface Props {
     product: Product
@@ -16,12 +16,17 @@ interface Props {
 const ProductCell: React.FC<Props> = (props) => {
     const product = new Product(props.product)
 
+    const navigation = useNavigation()
+    const navigateToProductDetails = () => navigation.navigate("ProductDetails", product)
+
     const { user } = useAuth()
 
     const db = firebase.database()
 
     function onPress() {
+        console.log(props.onPress)
         if (props.onPress) props.onPress(product)
+        else navigateToProductDetails()
     }
 
     function addToCart() {

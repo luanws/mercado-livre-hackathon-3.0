@@ -15,10 +15,6 @@ interface Props {
 const ListProductHall: React.FC<Props> = (props) => {
   const products = props.products
 
-  function onPress(product: Product) {
-    if (props.onPress) props.onPress(product)
-  }
-
   return (
     <View>
       <Text
@@ -31,7 +27,7 @@ const ListProductHall: React.FC<Props> = (props) => {
       <ListCardsHorizontal>
         {products.map((product, index) =>
           <ProductCell
-            onPress={() => onPress(product)}
+            onPress={props.onPress ? props.onPress : undefined}
             key={index}
             product={product}
           />
