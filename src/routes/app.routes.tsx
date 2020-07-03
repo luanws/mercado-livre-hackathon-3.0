@@ -7,6 +7,7 @@ import colors from '../res/colors'
 import Menu from '../components/Menu'
 
 import Home from '../pages/Home'
+import Cart from '../pages/Cart'
 
 const App = createStackNavigator()
 
@@ -26,6 +27,7 @@ const AppRoutes: React.FC = () => (
     }}
   >
     <App.Screen name="Home" component={Home} />
+    <App.Screen name="Cart" component={Cart} />
   </App.Navigator >
 )
 

@@ -13,7 +13,7 @@ interface Props {
     onPress?: (product: Product) => void
 }
 
-const ProductView: React.FC<Props> = (props) => {
+const ProductCell: React.FC<Props> = (props) => {
     const product = new Product(props.product)
 
     const { user } = useAuth()
@@ -57,4 +57,4 @@ const ProductView: React.FC<Props> = (props) => {
     )
 }
 
-export default ProductView
+export default ProductCell
