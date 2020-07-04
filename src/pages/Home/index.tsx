@@ -1,42 +1,40 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import React from 'react'
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { useAuth } from '../../hooks/auth'
 import { useNavigation } from '@react-navigation/native'
-import * as firebase from 'firebase'
 
-import ListProductsByHall from '../../components/List/ListProductsByHall'
-import Product from '../../models/product'
-
+import colors from '../../res/colors'
 import styles from './styles'
 
-const db = firebase.database()
+interface ButtonCardProps {
+  title: string
+  onPress: () => void
+}
+
+const ButtonCard: React.FC<ButtonCardProps> = (props) => (
+  <TouchableOpacity style={styles.buttonCard} onPress={props.onPress}>
+    {props.children}
+    <Text style={{ textAlign: 'center' }}>{props.title}</Text>
+  </TouchableOpacity>
+)
 
 const Home: React.FC = () => {
-  const { user, signOut } = useAuth()
-  const [products, setProducts] = useState<Product[]>([])
+  const navigation = useNavigation()
 
-  useEffect(() => {
-    const listener = db.ref('products')
-
-    listener.on('value', (snapshot: firebase.database.DataSnapshot) => {
-      const products: Product[] = []
-
-      snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
-        const product: Product = snapshot.val()
-        products.push(product)
-        product.key = snapshot.key
-      })
-
-      setProducts(products)
-    })
-
-    return () => listener.off()
-  }, [])
+  const navigateToProductSelection = () => navigation.navigate('ProductSelection')
+  const navigateToCart = () => navigation.navigate('Cart')
 
   return (
     <ScrollView>
-      <ListProductsByHall products={products} />
+      <View style={styles.containerButtonCards}>
+        <ButtonCard title="Compras" onPress={navigateToProductSelection}>
+          <Image style={styles.image} source={require('../../assets/img/supermarket.png')} />
+        </ButtonCard>
+        <ButtonCard title="Carrinho" onPress={navigateToCart}>
+          <Image style={styles.image} source={require('../../assets/img/cart.png')} />
+        </ButtonCard>
+      </View>
     </ScrollView>
   )
 }
