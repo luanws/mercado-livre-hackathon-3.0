@@ -9,3 +9,5 @@ class CartProduct {
         this.product = product
     }
 }
+
+export default CartProduct
