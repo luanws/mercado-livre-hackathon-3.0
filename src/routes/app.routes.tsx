@@ -8,6 +8,7 @@ import Menu from '../components/Menu'
 
 import Home from '../pages/Home'
 import Cart from '../pages/Cart'
+import Payment from '../pages/Payment'
 import ProductSelection from '../pages/ProductSelection'
 import ProductDetails from '../pages/ProductDetails'
 
@@ -30,6 +31,7 @@ const AppRoutes: React.FC = () => (
   >
     <App.Screen name="Home" component={Home} options={{ title: 'Início' }} />
     <App.Screen name="Cart" component={Cart} options={{ title: 'Carrinho' }} />
+    <App.Screen name="Payment" component={Payment} options={{ title: 'Pagamento' }} />
     <App.Screen name="ProductSelection" component={ProductSelection} options={{ title: 'Produtos' }} />
     <App.Screen name="ProductDetails" component={ProductDetails} options={{ title: 'Detalhes' }} />
   </App.Navigator >

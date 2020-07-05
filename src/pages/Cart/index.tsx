@@ -1,18 +1,23 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, ScrollView } from 'react-native'
-import * as firebase from 'firebase'
 
 import ProductsCart from '../../components/ProductsCart'
 import CartProduct from '../../models/cart-product'
 import Product from '../../models/product'
-import styles from './styles'
 import Button from '../../components/Button'
+import { useNavigation } from '@react-navigation/native'
+
+import styles from './styles'
 
 const Cart = () => {
   const [cartProducts, setCartProducts] = useState<CartProduct[]>([])
   const [products, setProducts] = useState<Product[]>([])
   const [totalPrice, setTotalPrice] = useState<number>(0)
   const [totalPriceMoneyFormat, setTotalPriceMoneyFormat] = useState<string>('')
+
+  const navigation = useNavigation()
+
+  const navigateToPayment = () => navigation.navigate('Payment', cartProducts)
 
   useEffect(() => {
     setProducts(cartProducts.map(cp => cp.product))
@@ -47,7 +52,9 @@ const Cart = () => {
         <View style={styles.containerTotalPrice}>
           <Text style={styles.totalPrice}>{totalPriceMoneyFormat}</Text>
         </View>
-        <Button>Comprar produtos</Button>
+        <Button onPress={navigateToPayment}>
+          Comprar produtos
+        </Button>
       </View>
     )
   }

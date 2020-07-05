@@ -5,13 +5,10 @@ const styles = StyleSheet.create({
         margin: 16,
     },
     containerTotalPrice: {
-        // flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: 'white',
         padding: 8,
-        borderRadius: 3,
-        // borderWidth: 1,
-        // borderColor: 'gray'
+        borderRadius: 8,
     },
     totalPrice: {
         color: 'green',
