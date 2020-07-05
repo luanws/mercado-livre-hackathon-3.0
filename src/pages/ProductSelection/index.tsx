@@ -7,7 +7,9 @@ import { Form } from '@unform/mobile'
 import Input from '../../components/Input'
 import { FormHandles } from '@unform/core'
 import ListProductsByHall from '../../components/List/ListProductsByHall'
+import ListCompanyes from '../../components/List/ListCompanyes'
 import Product from '../../models/product'
+import Company from '../../models/company'
 
 import styles from './styles'
 
@@ -20,6 +22,9 @@ interface FormSearch {
 const ProductSelection: React.FC = () => {
     const [filteredProductsAvailable, setFilteredProductsAvailable] = useState<Product[]>([])
     const [productsAvailable, setProductsAvailable] = useState<Product[]>([])
+
+    const [companyes, setCompanyes] = useState<Company[]>([])
+
     const [search, setSearch] = useState<string>('')
     const searchFormRef = useRef<FormHandles>(null)
 
@@ -35,17 +40,32 @@ const ProductSelection: React.FC = () => {
     }, [productsAvailable, search])
 
     useEffect(() => {
-        const listener = db.ref('products')
+        const companyesRef = db.ref('companyes')
+        companyesRef.once('value', (snapshot: firebase.database.DataSnapshot) => {
+            const companyes: Company[] = []
 
-        listener
+            snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
+                const company: Company = snapshot.val()
+                company.key = snapshot.key
+                companyes.push(company)
+            })
+
+            setCompanyes(companyes)
+        })
+    }, [])
+
+    useEffect(() => {
+        const productsRef = db.ref('products')
+
+        productsRef
             .orderByChild('companyKey')
             .on('value', (snapshot: firebase.database.DataSnapshot) => {
                 const products: Product[] = []
 
                 snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
                     const product: Product = snapshot.val()
-                    products.push(product)
                     product.key = snapshot.key
+                    products.push(product)
                 })
 
                 products.sort((a, b) => a.name.localeCompare(b.name))
@@ -53,7 +73,7 @@ const ProductSelection: React.FC = () => {
                 setProductsAvailable(productsAvailable)
             })
 
-        return () => listener.off()
+        return () => productsRef.off()
     }, [])
 
     return (
@@ -73,6 +93,7 @@ const ProductSelection: React.FC = () => {
                     onSubmitEditing={() => searchFormRef.current?.submitForm()}
                 />
             </Form>
+            {/* <ListCompanyes companyes={companyes} /> */}
             <ListProductsByHall products={filteredProductsAvailable} />
         </ScrollView>
     )
