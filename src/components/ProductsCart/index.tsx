@@ -18,9 +18,17 @@ interface CartProductKeyAndProductKey {
   keyProduct: string
 }
 
-const ProductsCart = () => {
+interface Props {
+  getProducts?: (products: CartProduct[]) => void
+}
+
+const ProductsCart: React.FC<Props> = (props) => {
   const { user, signOut } = useAuth()
   const [cartProducts, setCartProducts] = useState<CartProduct[]>([])
+
+  if (props.getProducts) {
+    props.getProducts(cartProducts)
+  }
 
   function removeProductFromCart(product: Product) {
     const indexProduct = cartProducts.map(cp => cp.product).indexOf(product)
