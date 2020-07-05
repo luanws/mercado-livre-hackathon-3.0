@@ -40,7 +40,7 @@ const PickerCompanyes: React.FC<Props> = (props) => {
   }
 
   return (
-    <View style={[{ flex: 1, flexDirection: 'column', justifyContent: 'center' }, props.style]}>
+    <View style={[styles.container, props.style]}>
       <CustomPicker
         placeholder={'Please select your favorite item...'}
         options={props.companyes}

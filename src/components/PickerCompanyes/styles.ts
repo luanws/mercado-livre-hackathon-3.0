@@ -16,6 +16,12 @@ const styles = StyleSheet.create({
     },
     defaultText: {
         margin: 8
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        backgroundColor: 'blue',
     }
 })
 
