@@ -10,7 +10,7 @@ interface Props {
     onPress?: (company: Company) => void
 }
 
-const CompanyCell: React.FC<Props> = (props) => {
+const CompanyCard: React.FC<Props> = (props) => {
     const company = new Company(props.company)
 
     const navigation = useNavigation()
@@ -38,4 +38,4 @@ const CompanyCell: React.FC<Props> = (props) => {
     )
 }
 
-export default CompanyCell
+export default CompanyCard

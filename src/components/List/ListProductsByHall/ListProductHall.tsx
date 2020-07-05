@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, ScrollView } from 'react-native'
 
 import ListCardsHorizontal from '../ListCardsHorizontal'
-import ProductCell from '../../Cell/ProductCell'
+import ProductCard from '../../Card/ProductCard'
 
 import Product from '../../../models/product'
 
@@ -26,7 +26,7 @@ const ListProductHall: React.FC<Props> = (props) => {
       >{props.title}</Text>
       <ListCardsHorizontal>
         {products.map((product, index) =>
-          <ProductCell
+          <ProductCard
             onPress={props.onPress ? props.onPress : undefined}
             key={index}
             product={product}

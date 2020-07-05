@@ -2,7 +2,7 @@ import React from 'react'
 import { View, ScrollView } from 'react-native'
 
 import Company from '../../../models/company'
-import CompanyCell from '../../Cell/CompanyCell'
+import CompanyCard from '../../Card/CompanyCard'
 
 import styles from './styles'
 import ListCardsHorizontal from '../ListCardsHorizontal'
@@ -22,7 +22,7 @@ const ListCompanyes: React.FC<Props> = (props) => {
     return (
         <ListCardsHorizontal>
             {companyes.map((company, index) => (
-                <CompanyCell key={index} company={company} onPress={props.onPress} />
+                <CompanyCard key={index} company={company} onPress={props.onPress} />
             ))}
         </ListCardsHorizontal>
     )

@@ -10,7 +10,7 @@ interface Props {
     onPress?: (product: Product) => void
 }
 
-const ProductCell: React.FC<Props> = (props) => {
+const ProductCard: React.FC<Props> = (props) => {
     const product = new Product(props.product)
 
     const navigation = useNavigation()
@@ -38,4 +38,4 @@ const ProductCell: React.FC<Props> = (props) => {
     )
 }
 
-export default ProductCell
+export default ProductCard

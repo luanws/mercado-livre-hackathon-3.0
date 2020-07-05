@@ -4,7 +4,7 @@ import { CustomPicker, FieldTemplateFunction, FieldTemplateSettings } from 'reac
 
 import { alertDialog } from '../../utils/alert'
 
-import CompanyCell from '../../components/Cell/CompanyCell'
+import CompanyCard from '../Card/CompanyCard'
 import Company from '../../models/company'
 
 import styles from './styles'
