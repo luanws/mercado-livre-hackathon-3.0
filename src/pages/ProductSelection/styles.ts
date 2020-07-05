@@ -9,6 +9,18 @@ const styles = StyleSheet.create({
     pickerCompanyes: {
         marginBottom: 16,
         marginTop: -8,
+    },
+    buttonAddFromCart: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        backgroundColor: '#efe',
+        borderRadius: 3,
+        marginTop: 8,
+        padding: 8
+    },
+    buttonAddFromCartText: {
+        color: 'green'
     }
 })
 
