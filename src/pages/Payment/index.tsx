@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { View, Text } from 'react-native'
 import Button from '../../components/Button'
 
@@ -21,6 +21,7 @@ interface PaymentFormData {
   creditCardSecurityCode: string
   creditCardExpirationMonth: string
   creditCardExpirationYear: string
+  deliveryAddress: string
 }
 
 const Payment = () => {
@@ -66,43 +67,58 @@ const Payment = () => {
 
   }
 
-  function handleSubmitPayment() {
-
-  }
+  const handleSubmitPayment = useCallback(async (data: PaymentFormData) => {
+    console.log(data)
+  }, [])
 
   return (
     <ScrollView style={styles.container}>
       <Form
+        style={styles.paymentForm}
         ref={paymentFormRef}
         onSubmit={handleSubmitPayment}
       >
         <Input
-          placeholder="Número do cartão"
-          keyboardType="number-pad"
-          icon="credit-card"
+          placeholder="Nome do cartão"
+          autoCapitalize="sentences"
+          icon="user"
           name="creditCardNameCard"
           returnKeyType="next"
         />
         <Input
+          placeholder="Número do cartão"
+          keyboardType="numeric"
+          icon="credit-card"
+          name="creditCardNumberCard"
+          returnKeyType="next"
+        />
+        <Input
           placeholder="Mês de vencimento"
-          keyboardType="number-pad"
+          keyboardType="numeric"
           icon="calendar"
           name="creditCardExpirationMonth"
           returnKeyType="next"
         />
         <Input
           placeholder="Ano de vencimento"
-          keyboardType="number-pad"
+          keyboardType="numeric"
           icon="calendar"
-          name="creditCardExpirationMonth"
+          name="creditCardExpirationYear"
           returnKeyType="next"
         />
         <Input
           placeholder="Código de segurança"
-          keyboardType="number-pad"
+          keyboardType="numeric"
           icon="lock"
-          name="creditCardExpirationMonth"
-          returnKeyType="done"
+          name="creditCardSecurityCode"
+          returnKeyType="next"
+        />
+        <Input
+          placeholder="Endereço de entrega"
+          autoCapitalize="sentences"
+          icon="map-pin"
+          name="deliveryAddress"
+          returnKeyType="next"
         />
         <View>
           <View style={styles.containerTotalPrice}>

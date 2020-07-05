@@ -2,6 +2,8 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
+    },
+    paymentForm: {
         margin: 16
     },
     row: {
