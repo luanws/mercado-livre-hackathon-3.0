@@ -14,7 +14,7 @@ const showSuccess = (message: string) => Toast.showSuccess(message, {
     imgStyle: {},
     mask: false,
     maskStyle: {},
-    duration: 1000,
+    duration: 500,
     animation: true,
 })
 
