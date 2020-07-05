@@ -20,9 +20,11 @@ const ProductsCart = () => {
           const product: Product = snapshot.val()
           product.key = snapshot.key
           products.push(product)
+          if (products.length == keyProducts.length) {
+            setProductsCart(products)
+          }
         })
     }
-    setProductsCart(products)
   }
 
   useEffect(() => {
