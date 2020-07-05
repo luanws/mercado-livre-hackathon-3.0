@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import { CustomPicker, FieldTemplateSettings, OptionTemplateSettings, OptionTemplateFunction } from 'react-native-custom-picker'
+import { View, Text, StyleProp, ViewStyle } from 'react-native'
+import { CustomPicker, FieldTemplateSettings, OptionTemplateSettings } from 'react-native-custom-picker'
 import { AntDesign } from '@expo/vector-icons'
 
 import Company from '../../models/company'
@@ -11,6 +11,7 @@ import styles from './styles'
 interface Props {
   companyes: Company[]
   onValueChange?: (company: Company) => void
+  style?: StyleProp<ViewStyle>
 }
 
 const PickerCompanyes: React.FC<Props> = (props) => {
@@ -39,7 +40,7 @@ const PickerCompanyes: React.FC<Props> = (props) => {
   }
 
   return (
-    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+    <View style={[{ flex: 1, flexDirection: 'column', justifyContent: 'center' }, props.style]}>
       <CustomPicker
         placeholder={'Please select your favorite item...'}
         options={props.companyes}

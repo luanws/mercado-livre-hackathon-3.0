@@ -102,7 +102,11 @@ const ProductSelection: React.FC = () => {
                     onSubmitEditing={() => searchFormRef.current?.submitForm()}
                 />
             </Form>
-            <PickerCompanyes companyes={companyes} onValueChange={setSelectedCompany} />
+            <PickerCompanyes
+                style={{ marginBottom: 16, marginTop: -8 }}
+                companyes={companyes}
+                onValueChange={setSelectedCompany}
+            />
             <ListProductsByHall products={filteredProductsAvailable} />
         </ScrollView>
     )
