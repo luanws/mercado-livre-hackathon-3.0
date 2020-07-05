@@ -38,7 +38,7 @@ const ProductSelection: React.FC = () => {
             p => p.name.toLowerCase().includes(search.toLowerCase())
         )
         setFilteredProductsAvailable(filteredProductsAvailable)
-    }, [productsAvailable, search, selectedCompany])
+    }, [productsAvailable, search])
 
     useEffect(() => {
         const companyesRef = db.ref('companyes')
@@ -76,7 +76,7 @@ const ProductSelection: React.FC = () => {
             })
 
         return () => productsRef.off()
-    }, [])
+    }, [selectedCompany])
 
     return (
         <ScrollView>
