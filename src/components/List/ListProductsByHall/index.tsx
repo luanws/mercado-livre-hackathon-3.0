@@ -21,7 +21,7 @@ const ListProductsByHall: React.FC<Props> = (props) => {
     const products = props.products
 
     const productCategoryArray: ProductHall[] = []
-    const halls = Array.from(new Set(products.map(p => p.hall)))
+    const halls = Array.from(new Set(products.map(p => p.hall))).sort()
 
     function onPress(product: Product) {
         if (props.onPress) props.onPress(product)
