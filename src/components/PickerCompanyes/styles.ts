@@ -13,6 +13,9 @@ const styles = StyleSheet.create({
     },
     containerItem: {
         margin: 8
+    },
+    defaultText: {
+        margin: 8
     }
 })
 

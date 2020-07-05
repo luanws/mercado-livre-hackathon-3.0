@@ -18,7 +18,12 @@ const PickerCompanyes: React.FC<Props> = (props) => {
     const { selectedItem: selectedCompany, defaultText, getLabel, clear } = settings
     return (
       <View style={styles.containerField}>
-        <CompanyCell company={selectedCompany} />
+        {selectedCompany ?
+          <CompanyCell company={selectedCompany} /> :
+          <Text style={styles.defaultText}>
+            Selecione um supermercado
+          </Text>
+        }
         <AntDesign name="caretdown" size={16} color="gray" />
       </View>
     )
