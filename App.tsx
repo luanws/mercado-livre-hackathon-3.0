@@ -14,6 +14,13 @@ import AppProvider from './src/hooks'
 import colors from './src/res/colors'
 import Routes from './src/routes'
 
+import { YellowBox } from 'react-native'
+
+YellowBox.ignoreWarnings([
+  'FIREBASE WARNING: Using an unspecified index.',
+  'source.uri should not be an empty string',
+])
+
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
