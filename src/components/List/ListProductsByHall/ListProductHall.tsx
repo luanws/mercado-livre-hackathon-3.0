@@ -10,6 +10,7 @@ interface Props {
   products: Product[]
   title: string
   onPress?: (product: Product) => void
+  additionalElements?: (product: Product) => JSX.Element
 }
 
 const ListProductHall: React.FC<Props> = (props) => {
@@ -30,6 +31,7 @@ const ListProductHall: React.FC<Props> = (props) => {
             onPress={props.onPress ? props.onPress : undefined}
             key={index}
             product={product}
+            additionalElements={props.additionalElements}
           />
         )}
       </ListCardsHorizontal>

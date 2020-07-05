@@ -6,15 +6,17 @@ import ListProductHall from './ListProductHall'
 import Product from '../../../models/product'
 
 import styles from './styles'
+import CartProduct from '../../../models/cart-product'
 
 interface Props {
     products: Product[]
     onPress?: (product: Product) => void
+    additionalElements?: (product: Product) => JSX.Element
 }
 
 interface ProductHall {
     name: string
-    products: Product[]
+    cartProducts: CartProduct[]
 }
 
 const ListProductsByHall: React.FC<Props> = (props) => {
@@ -31,7 +33,12 @@ const ListProductsByHall: React.FC<Props> = (props) => {
         <View style={styles.container}>
             {halls.map((hall, index) => {
                 const hallProducts = products.filter(p => p.hall === hall)
-                return <ListProductHall key={index} title={hall} products={hallProducts} />
+                return <ListProductHall
+                    key={index}
+                    title={hall}
+                    products={hallProducts}
+                    additionalElements={props.additionalElements}
+                />
             })}
         </View>
     )

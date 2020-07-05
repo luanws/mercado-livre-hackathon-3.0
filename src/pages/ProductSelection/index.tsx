@@ -70,7 +70,7 @@ const ProductSelection: React.FC = () => {
                 const products: Product[] = []
 
                 snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
-                    const product: Product = snapshot.val()
+                    const product = new Product(snapshot.val())
                     product.key = snapshot.key
                     products.push(product)
                 })

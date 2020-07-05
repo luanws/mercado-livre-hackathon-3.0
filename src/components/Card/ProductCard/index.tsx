@@ -8,10 +8,11 @@ import { useNavigation } from '@react-navigation/native'
 interface Props {
     product: Product
     onPress?: (product: Product) => void
+    additionalElements?: (product: Product) => JSX.Element
 }
 
 const ProductCard: React.FC<Props> = (props) => {
-    const product = new Product(props.product)
+    const product = props.product
 
     const navigation = useNavigation()
     const navigateToProductDetails = () => navigation.navigate("ProductDetails", product)
@@ -33,6 +34,9 @@ const ProductCard: React.FC<Props> = (props) => {
             <View style={styles.containerInfo}>
                 <Text style={styles.name}>{product.name}</Text>
                 <Text style={styles.info}>{product.quantity} - {product.getPriceMoneyFormat()}</Text>
+            </View>
+            <View>
+                {props.additionalElements ? props.additionalElements(product) : null}
             </View>
         </TouchableOpacity>
     )
