@@ -23,22 +23,21 @@ const ProductCard: React.FC<Props> = (props) => {
     }
 
     return (
-        <TouchableOpacity
-            style={styles.container}
-            onPress={() => onPress()}
-        >
-            <Image
-                style={styles.image}
-                source={{ uri: product.imageUrl }}
-            />
-            <View style={styles.containerInfo}>
-                <Text style={styles.name}>{product.name}</Text>
-                <Text style={styles.info}>{product.quantity} - {product.getPriceMoneyFormat()}</Text>
-            </View>
+        <View style={styles.container}>
+            <TouchableOpacity onPress={() => onPress()}>
+                <Image
+                    style={styles.image}
+                    source={{ uri: product.imageUrl }}
+                />
+                <View style={styles.containerInfo}>
+                    <Text style={styles.name}>{product.name}</Text>
+                    <Text style={styles.info}>{product.quantity} - {product.getPriceMoneyFormat()}</Text>
+                </View>
+            </TouchableOpacity>
             <View>
                 {props.additionalElements ? props.additionalElements(product) : null}
             </View>
-        </TouchableOpacity>
+        </View>
     )
 }
 
