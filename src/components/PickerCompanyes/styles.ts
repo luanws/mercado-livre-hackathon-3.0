@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         borderColor: '#f4f4f4',
         borderWidth: 2,
         marginHorizontal: 16,
-        borderRadius: 3
+        borderRadius: 8
     },
     containerItem: {
         margin: 8
