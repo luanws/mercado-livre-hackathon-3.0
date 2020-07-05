@@ -7,11 +7,11 @@ import { Form } from '@unform/mobile'
 import Input from '../../components/Input'
 import { FormHandles } from '@unform/core'
 import ListProductsByHall from '../../components/List/ListProductsByHall'
-import ListCompanyes from '../../components/List/ListCompanyes'
 import Product from '../../models/product'
 import Company from '../../models/company'
 
 import styles from './styles'
+import PickerCompanyes from '../../components/PickerCompanyes'
 
 const db = firebase.database()
 
@@ -24,6 +24,7 @@ const ProductSelection: React.FC = () => {
     const [productsAvailable, setProductsAvailable] = useState<Product[]>([])
 
     const [companyes, setCompanyes] = useState<Company[]>([])
+    const [selectedCompany, setSelectedCompany] = useState<Company | null>(null)
 
     const [search, setSearch] = useState<string>('')
     const searchFormRef = useRef<FormHandles>(null)
@@ -37,7 +38,7 @@ const ProductSelection: React.FC = () => {
             p => p.name.toLowerCase().includes(search.toLowerCase())
         )
         setFilteredProductsAvailable(filteredProductsAvailable)
-    }, [productsAvailable, search])
+    }, [productsAvailable, search, selectedCompany])
 
     useEffect(() => {
         const companyesRef = db.ref('companyes')
@@ -59,6 +60,7 @@ const ProductSelection: React.FC = () => {
 
         productsRef
             .orderByChild('companyKey')
+            .equalTo(selectedCompany?.key ? selectedCompany.key : null)
             .on('value', (snapshot: firebase.database.DataSnapshot) => {
                 const products: Product[] = []
 
@@ -93,7 +95,7 @@ const ProductSelection: React.FC = () => {
                     onSubmitEditing={() => searchFormRef.current?.submitForm()}
                 />
             </Form>
-            {/* <ListCompanyes companyes={companyes} /> */}
+            <PickerCompanyes companyes={companyes} onValueChange={setSelectedCompany} />
             <ListProductsByHall products={filteredProductsAvailable} />
         </ScrollView>
     )
