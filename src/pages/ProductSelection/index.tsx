@@ -9,9 +9,10 @@ import { FormHandles } from '@unform/core'
 import ListProductsByHall from '../../components/List/ListProductsByHall'
 import Product from '../../models/product'
 import Company from '../../models/company'
+import PickerCompanyes from '../../components/PickerCompanyes'
+import { normalizeLowerCase } from '../../utils/strings'
 
 import styles from './styles'
-import PickerCompanyes from '../../components/PickerCompanyes'
 
 const db = firebase.database()
 
@@ -35,7 +36,13 @@ const ProductSelection: React.FC = () => {
 
     useEffect(() => {
         const filteredProductsAvailable = productsAvailable.filter(
-            p => p.name.toLowerCase().includes(search.toLowerCase())
+            p => {
+                const normalizedName = normalizeLowerCase(p.name)
+                const normalizedSearch = normalizeLowerCase(search)
+                console.log(normalizedName)
+                console.log(normalizedSearch)
+                return normalizedName.includes(normalizedSearch)
+            }
         )
         setFilteredProductsAvailable(filteredProductsAvailable)
     }, [productsAvailable, search])
