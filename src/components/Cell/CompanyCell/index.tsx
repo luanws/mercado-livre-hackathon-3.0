@@ -16,7 +16,6 @@ const CompanyCell: React.FC<Props> = (props) => {
             <Image style={styles.image} source={{ uri: company.logoUrl }} />
             <View>
                 <Text>{company.name}</Text>
-                <Text>{company.corporateName}</Text>
                 <Text>{company.city} - {company.uf}</Text>
             </View>
         </View>

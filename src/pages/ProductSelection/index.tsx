@@ -101,7 +101,7 @@ const ProductSelection: React.FC = () => {
                 />
             </Form>
             <PickerCompanyes
-                style={{ marginBottom: 16, marginTop: -8 }}
+                style={styles.pickerCompanyes}
                 companyes={companyes}
                 onValueChange={setSelectedCompany}
             />
