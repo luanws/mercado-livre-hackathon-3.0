@@ -4,7 +4,9 @@ const styles = StyleSheet.create({
     containerButtonCards: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
+        marginVertical: 16,
+        marginHorizontal: 8
     },
     buttonCard: {
         backgroundColor: 'white',
