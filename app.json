@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "mercado-livre-hackathon-3.0",
-    "slug": "mercado-livre-hackathon",
+    "name": "Mercado food",
+    "slug": "mercado-food",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#993399"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,11 +17,11 @@
       "**/*"
     ],
     "android": {
-      "package": "com.hackathon3.mercadolivrehackathon3",
+      "package": "com.mercadolivre.mercadofood",
       "versionCode": 1
     },
     "ios": {
-      "bundleIdentifier": "com.hackathon3.mercadolivrehackathon3",
+      "bundleIdentifier": "com.mercadolivre.mercadofood",
       "buildNumber": "1.0.0",
       "supportsTablet": true
     },
