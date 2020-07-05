@@ -1,13 +1,3 @@
-interface CompanyInterface {
-    key?: string | null
-    name: string
-    corporateName: string
-    cnpj: string
-    logoUrl: string
-    city: string
-    uf: string
-}
-
 class Company {
     key?: string | null
     name: string
@@ -17,7 +7,7 @@ class Company {
     city: string
     uf: string
 
-    constructor(company: CompanyInterface) {
+    constructor(company: Company) {
         this.key = company.key
         this.name = company.name
         this.corporateName = company.corporateName

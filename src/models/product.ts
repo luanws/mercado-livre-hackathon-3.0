@@ -1,17 +1,3 @@
-interface ProductInterface {
-    key?: string | null
-    companyKey: string
-    imageUrl: string
-    price: number
-    name: string
-    available: boolean
-    category: string
-    hall: string
-    brand: string
-    quantity: string
-    description: string
-}
-
 class Product {
     key?: string | null
     companyKey: string
@@ -25,7 +11,7 @@ class Product {
     quantity: string
     description: string
 
-    constructor(product: ProductInterface) {
+    constructor(product: Product) {
         this.key = product.key
         this.companyKey = product.companyKey
         this.imageUrl = product.imageUrl
