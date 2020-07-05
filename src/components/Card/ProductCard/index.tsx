@@ -32,7 +32,8 @@ const ProductCard: React.FC<Props> = (props) => {
             />
             <View style={styles.containerInfo}>
                 <Text style={styles.name}>{product.name}</Text>
-                <Text style={styles.info}>{product.quantity} - {product.getPriceMoneyFormat()}</Text>
+                <Text style={styles.info}>{product.getPriceMoneyFormat()}</Text>
+                <Text style={styles.info}>{product.quantity}</Text>
             </View>
         </TouchableOpacity>
     )
