@@ -43,7 +43,7 @@ const SignUp = () => {
       <Container>
         <Branding>
           <Logo source={logo} />
-          <Title>Mercado Rápido</Title>
+          <Title>Mercado food</Title>
         </Branding>
 
         <Form ref={formRef} onSubmit={handleSignUp}>
