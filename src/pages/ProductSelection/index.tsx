@@ -39,8 +39,6 @@ const ProductSelection: React.FC = () => {
             p => {
                 const normalizedName = normalizeLowerCase(p.name)
                 const normalizedSearch = normalizeLowerCase(search)
-                console.log(normalizedName)
-                console.log(normalizedSearch)
                 return normalizedName.includes(normalizedSearch)
             }
         )
