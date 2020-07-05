@@ -18,17 +18,21 @@ const ProductSelection: React.FC = () => {
     useEffect(() => {
         const listener = db.ref('products')
 
-        listener.on('value', (snapshot: firebase.database.DataSnapshot) => {
-            const products: Product[] = []
+        listener
+            .orderByChild('companyKey')
+            .on('value', (snapshot: firebase.database.DataSnapshot) => {
+                const products: Product[] = []
 
-            snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
-                const product: Product = snapshot.val()
-                products.push(product)
-                product.key = snapshot.key
+                snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
+                    const product: Product = snapshot.val()
+                    products.push(product)
+                    product.key = snapshot.key
+                })
+
+                products.sort((a, b) => a.name.localeCompare(b.name))
+                const availableProducts = products.filter(p => p.available === true)
+                setProducts(availableProducts)
             })
-
-            setProducts(products)
-        })
 
         return () => listener.off()
     }, [])
