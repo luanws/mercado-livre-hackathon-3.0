@@ -13,8 +13,8 @@ import CartProduct from '../../models/cart-product'
 
 const db = firebase.database()
 
-interface CartProductKey {
-  keyProductCart: string
+interface CartProductKeyAndProductKey {
+  keyCartProduct: string
   keyProduct: string
 }
 
@@ -30,20 +30,20 @@ const ProductsCart = () => {
     db.ref('carts').child(uid).child(key).remove()
   }
 
-  function setProductsCartFromCartProductKeys(cartProductKeys: CartProductKey[]) {
+  function setProductsCartFromCartProductKeys(cartProductKeyAndProductKeys: CartProductKeyAndProductKey[]) {
     const cartProducts: CartProduct[] = []
-    for (const cartProductKey of cartProductKeys) {
-      db.ref('products').child(cartProductKey.keyProduct)
+    for (const cartProductKeyAndProductKey of cartProductKeyAndProductKeys) {
+      db.ref('products').child(cartProductKeyAndProductKey.keyProduct)
         .once('value', (snapshot: firebase.database.DataSnapshot) => {
           const product = new Product(snapshot.val())
           const cartProduct = new CartProduct({
-            key: cartProductKey.keyProductCart,
+            key: cartProductKeyAndProductKey.keyCartProduct,
             product
           })
 
           cartProducts.push(cartProduct)
 
-          if (cartProducts.length == cartProductKeys.length) {
+          if (cartProducts.length == cartProductKeyAndProductKeys.length) {
             setCartProducts(cartProducts)
           }
         })
@@ -57,12 +57,12 @@ const ProductsCart = () => {
     const cartsRef = db.ref('carts').child(uid)
 
     cartsRef.on('value', (snapshot: firebase.database.DataSnapshot) => {
-      const cartProductKeys: CartProductKey[] = []
+      const cartProductKeys: CartProductKeyAndProductKey[] = []
 
       snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
-        const cartProductKey: CartProductKey = {
+        const cartProductKey: CartProductKeyAndProductKey = {
           keyProduct: snapshot.val(),
-          keyProductCart: snapshot.key!!
+          keyCartProduct: snapshot.key!!
         }
         cartProductKeys.push(cartProductKey)
       })
