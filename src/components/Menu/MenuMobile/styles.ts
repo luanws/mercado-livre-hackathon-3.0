@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     menuItem: {
         fontSize: 16
     },
+    menuItemIcon: {
+        marginRight: 12
+    }
 })
 
 export default styles

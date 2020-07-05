@@ -17,7 +17,7 @@ export default () => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigateToCart()}>
+            <TouchableOpacity style={styles.menuItemIcon} onPress={() => navigateToCart()}>
                 <Feather name="shopping-cart" size={24} color="white" />
             </TouchableOpacity>
             <Menu
