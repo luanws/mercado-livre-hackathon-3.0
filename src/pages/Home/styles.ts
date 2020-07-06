@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
-        marginVertical: 16,
+        flex: 1,
+        marginVertical: 8,
         marginHorizontal: 8
     },
     buttonCard: {

@@ -29,15 +29,19 @@ const Home: React.FC = () => {
   return (
     <ScrollView>
       <View style={styles.containerButtonCards}>
-        <ButtonCard title="Compras" onPress={navigateToProductSelection}>
-          <Image style={styles.image} source={require('../../assets/img/supermarket.png')} />
-        </ButtonCard>
-        <ButtonCard title="Carrinho" onPress={navigateToCart}>
-          <Image style={styles.image} source={require('../../assets/img/cart.png')} />
-        </ButtonCard>
-        <ButtonCard title="Acompanhar entrega" onPress={navigateToTrackDelivery}>
-          <Image style={styles.image} source={require('../../assets/img/truck.png')} />
-        </ButtonCard>
+        <View>
+          <ButtonCard title="Compras" onPress={navigateToProductSelection}>
+            <Image style={styles.image} source={require('../../assets/img/supermarket.png')} />
+          </ButtonCard>
+          <ButtonCard title="Acompanhar entrega" onPress={navigateToTrackDelivery}>
+            <Image style={styles.image} source={require('../../assets/img/truck.png')} />
+          </ButtonCard>
+        </View>
+        <View>
+          <ButtonCard title="Carrinho" onPress={navigateToCart}>
+            <Image style={styles.image} source={require('../../assets/img/cart.png')} />
+          </ButtonCard>
+        </View>
       </View>
     </ScrollView>
   )
