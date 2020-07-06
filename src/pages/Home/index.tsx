@@ -15,7 +15,7 @@ interface ButtonCardProps {
 const ButtonCard: React.FC<ButtonCardProps> = (props) => (
   <TouchableOpacity style={styles.buttonCard} onPress={props.onPress}>
     {props.children}
-    <Text style={{ textAlign: 'center' }}>{props.title}</Text>
+    <Text style={styles.text}>{props.title}</Text>
   </TouchableOpacity>
 )
 
@@ -24,6 +24,7 @@ const Home: React.FC = () => {
 
   const navigateToProductSelection = () => navigation.navigate('ProductSelection')
   const navigateToCart = () => navigation.navigate('Cart')
+  const navigateToTrackDelivery = () => navigation.navigate('TrackDelivery')
 
   return (
     <ScrollView>
@@ -33,6 +34,9 @@ const Home: React.FC = () => {
         </ButtonCard>
         <ButtonCard title="Carrinho" onPress={navigateToCart}>
           <Image style={styles.image} source={require('../../assets/img/cart.png')} />
+        </ButtonCard>
+        <ButtonCard title="Acompanhar entrega" onPress={navigateToTrackDelivery}>
+          <Image style={styles.image} source={require('../../assets/img/truck.png')} />
         </ButtonCard>
       </View>
     </ScrollView>

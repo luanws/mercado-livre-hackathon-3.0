@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         width: 80,
         height: 80,
+    },
+    text: {
+        textAlign: 'center'
     }
 })
 
