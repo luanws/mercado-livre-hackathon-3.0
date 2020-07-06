@@ -65,6 +65,7 @@ const Payment = () => {
 
     const companyKeys = Array.from(new Set(products.map(p => p.companyKey)))
 
+    let numberOfDeliveryesAdded = 0
     for (const companyKey of companyKeys) {
       const productsFromCompany = products.filter(p => p.companyKey === companyKey)
       const productsFromCompanyRemovedKeys = productsFromCompany
@@ -80,10 +81,9 @@ const Payment = () => {
         address,
       })
 
-      let numberOfDeliveryesAdded = 0
       db.ref('deliveries').child(companyKey).push(delivery)
         .then((reference: firebase.database.Reference) => {
-          numberOfDeliveryesAdded++
+          numberOfDeliveryesAdded += 1
           if (numberOfDeliveryesAdded == companyKeys.length) {
             onDeliveriesAdded(uid)
           }
