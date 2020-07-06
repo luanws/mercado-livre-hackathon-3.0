@@ -20,7 +20,7 @@ const TrackDelivery = () => {
             snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
                 snapshot.forEach((snapshot: firebase.database.DataSnapshot) => {
                     const delivery: Delivery = snapshot.val()
-                    if (delivery.uidClient === uid) {
+                    if (delivery.uidClient === uid && delivery.status !== 'received') {
                         deliveries.push(delivery)
                     }
                 })
