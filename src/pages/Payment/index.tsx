@@ -79,6 +79,7 @@ const Payment = () => {
         uidClient: uid,
         products: productsFromCompanyRemovedKeys,
         address,
+        companyKey,
       })
 
       db.ref('deliveries').child(companyKey).push(delivery)
