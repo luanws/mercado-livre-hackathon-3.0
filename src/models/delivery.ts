@@ -13,3 +13,5 @@ class Delivery {
         this.products = delivery.products
     }
 }
+
+export default Delivery

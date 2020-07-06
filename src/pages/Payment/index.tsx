@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { View, Text } from 'react-native'
 import Button from '../../components/Button'
+import * as firebase from 'firebase'
 
 import styles from './styles'
 
 import { Form } from '@unform/mobile'
 import Input from '../../components/Input'
-import { useRoute } from '@react-navigation/native'
+import { useRoute, useNavigation } from '@react-navigation/native'
 import { FormHandles } from '@unform/core'
 
 import CartProduct from '../../models/cart-product'
 import CreditCard from '../../models/credit-card'
 import Product from '../../models/product'
 import { ScrollView } from 'react-native-gesture-handler'
+import Delivery from '../../models/delivery'
+import { useAuth } from '../../hooks/auth'
+import toast from '../../utils/toast'
 
 interface PaymentFormData {
   creditCardNameCard: string
@@ -25,33 +29,19 @@ interface PaymentFormData {
 }
 
 const Payment = () => {
-  const [cartProducts, setCardProducts] = useState<CartProduct[]>([])
-  const [products, setProducts] = useState<Product[]>([])
-  const [totalPrice, setTotalPrice] = useState<number>(0)
-  const [totalPriceMoneyFormat, setTotalPriceMoneyFormat] = useState<string>('')
+  const route = useRoute()
+
+  const cartProducts = route.params as CartProduct[]
+  const products = cartProducts.map(cp => cp.product)
+  const totalPrice = calculateTotalPrice(products)
+  const totalPriceMoneyFormat = maskMoney(totalPrice)
 
   const paymentFormRef = useRef<FormHandles>(null)
 
-  const route = useRoute()
+  const { user } = useAuth()
+  const navigation = useNavigation()
 
-  useEffect(() => {
-    setCardProducts(route.params as CartProduct[])
-  }, [])
-
-  useEffect(() => {
-    setProducts(cartProducts.map(cp => cp.product))
-  }, [cartProducts])
-
-  useEffect(() => {
-    const totalPrice = calculateTotalPrice(products)
-    setTotalPrice(totalPrice)
-  }, [products])
-
-  useEffect(() => {
-    if (!totalPrice) return
-    const totalPriceMoneyFormat = maskMoney(totalPrice)
-    setTotalPriceMoneyFormat(totalPriceMoneyFormat)
-  }, [totalPrice])
+  const db = firebase.database()
 
   function maskMoney(money: number) {
     return 'R$' + money.toFixed(2).toString().replace('.', ',')
@@ -63,12 +53,55 @@ const Payment = () => {
     return totalPrice
   }
 
-  function buy() {
+  function onDeliveriesAdded(uid: string) {
+    db.ref('carts').child(uid).remove()
+    navigation.goBack()
+    navigation.goBack()
+  }
 
+  function addDeliveries(products: Product[], address: string) {
+    const uid = user?.uid
+    if (!uid) return
+
+    const companyKeys = Array.from(new Set(products.map(p => p.companyKey)))
+
+    for (const companyKey of companyKeys) {
+      const productsFromCompany = products.filter(p => p.companyKey === companyKey)
+      const productsFromCompanyRemovedKeys = productsFromCompany
+        .map(p => {
+          delete p.key
+          return p
+        })
+
+      const delivery = new Delivery({
+        status: 'pending',
+        uidClient: uid,
+        products: productsFromCompanyRemovedKeys,
+        address,
+      })
+
+      let numberOfDeliveryesAdded = 0
+      db.ref('deliveries').child(companyKey).push(delivery)
+        .then((reference: firebase.database.Reference) => {
+          numberOfDeliveryesAdded++
+          if (numberOfDeliveryesAdded == companyKeys.length) {
+            onDeliveriesAdded(uid)
+          }
+        })
+    }
   }
 
   const handleSubmitPayment = useCallback(async (data: PaymentFormData) => {
-    console.log(data)
+    const creditCard = new CreditCard({
+      nameCard: data.creditCardNameCard,
+      numberCard: data.creditCardNumberCard,
+      expirationMonth: data.creditCardExpirationMonth,
+      expirationYear: data.creditCardExpirationYear,
+      securityCode: data.creditCardSecurityCode,
+      cpf: data.creditCardCpf
+    })
+
+    addDeliveries(products, data.deliveryAddress)
   }, [])
 
   return (
@@ -83,6 +116,14 @@ const Payment = () => {
           autoCapitalize="sentences"
           icon="user"
           name="creditCardNameCard"
+          returnKeyType="next"
+        />
+        <Input
+          placeholder="CPF"
+          autoCapitalize="sentences"
+          keyboardType="numeric"
+          icon="file-text"
+          name="creditCardCpf"
           returnKeyType="next"
         />
         <Input
